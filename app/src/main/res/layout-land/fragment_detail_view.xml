@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.DetailViewFragment">
+
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_leftBar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="tv_profile,flow_textFields"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/flow_right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_textFields"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="iv_accPhoto,tv_username,tv_career,tv_address"
+        app:flow_verticalGap="@dimen/verticalGap_textFields"
+
+        app:flow_verticalStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBtn_back"
+        android:layout_width="@dimen/navigBtn_size"
+        android:layout_height="@dimen/navigBtn_size"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:backgroundTint="@color/alpha0"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tv_profile"
+        app:layout_constraintTop_toTopOf="@id/tv_profile"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_profile"
+        android:textAppearance="@style/Text.Label"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_accPhoto"
+        android:layout_width="@dimen/ic_size"
+        android:layout_height="@dimen/ic_size"
+        android:src="@drawable/ic_background_ellipse" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_username"
+        android:textAppearance="@style/Text.Input"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_career"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_career"
+        android:textAppearance="@style/Text.Body2"
+        android:textColor="@color/gray_text2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_address"
+        android:textAppearance="@style/Text.Body2"
+        android:textColor="@color/gray_text2" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="flow_buttons,btn_message"
+        app:layout_constraintStart_toEndOf="@id/flow_leftBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_buttons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="btn_fb,btn_in,btn_inst" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/alpha0"
+        android:src="@drawable/ic_fb_logo" />
+    />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/alpha0"
+        android:src="@drawable/ic_in_logo" />
+    />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_inst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/alpha0"
+        android:src="@drawable/ic_inst_logo" />
+    />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_message"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/btn_height"
+        android:backgroundTint="@color/orange"
+        android:text="message"
+        app:cornerRadius="@dimen/btn_corner_radius" />
+</androidx.constraintlayout.widget.ConstraintLayout>
