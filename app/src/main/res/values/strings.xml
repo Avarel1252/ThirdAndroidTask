@@ -10,4 +10,6 @@
     <string name="hint_date_of_birth">Date of birth</string>
     <string name="btn_save">save</string>
     <string name="label_profile">Profile</string>
+    <string name="username" translatable="false">%s</string>
+    <string name="career" translatable="false">%s</string>
 </resources>

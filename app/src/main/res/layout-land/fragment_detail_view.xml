@@ -48,11 +48,12 @@
         android:textAppearance="@style/Text.Label"
         android:textColor="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_accPhoto"
         android:layout_width="@dimen/ic_size"
         android:layout_height="@dimen/ic_size"
-        android:src="@drawable/ic_background_ellipse" />
+        android:background="@drawable/ic_background_ellipse"
+        android:src="@drawable/ic_light_acc_icon" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_username"
@@ -85,10 +86,10 @@
         android:layout_marginVertical="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
         app:constraint_referenced_ids="flow_buttons,btn_message"
-        app:layout_constraintStart_toEndOf="@id/flow_leftBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/flow_leftBar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow_buttons"

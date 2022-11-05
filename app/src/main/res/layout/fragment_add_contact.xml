@@ -58,11 +58,13 @@
         android:textAppearance="@style/Text.Label"
         android:textColor="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_accPhoto"
         android:layout_width="@dimen/ic_size"
         android:layout_height="@dimen/ic_size"
-        android:src="@drawable/ic_background_ellipse" />
+        android:src="@drawable/ic_light_acc_icon"
+        android:background="@drawable/ic_background_ellipse"
+        />
 
     <ImageButton
         android:id="@+id/btn_add_photo"

@@ -11,14 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.application.databinding.FragmentAddContactBinding
+import com.application.utils.extensions.setImage
 import com.application.models.UserModel
 import com.application.models.UserViewModel
+import com.application.utils.Constants
+import com.application.utils.extensions.setImageUriGlide
 
 
 class AddContactFragment : Fragment() {
     private lateinit var binding: FragmentAddContactBinding
     private val sharedViewModel: UserViewModel by activityViewModels()
-    private var userPhotoUri = Uri.parse("")
+    private var userPhotoUri = Uri.parse(Constants.DEFAULT_USER_PHOTO)
 
     //contract photo from gallery
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
@@ -32,15 +35,22 @@ class AddContactFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddContactBinding.inflate(inflater, container, false).apply {
+        binding = FragmentAddContactBinding.inflate(inflater, container, false)
+
+        setOnClickListeners()
+
+        return binding.root
+    }
+
+    private fun setOnClickListeners() {
+        with(binding) {
             btnSave.setOnClickListener { returnUserInfo() }
             btnAddPhoto.setOnClickListener {
                 addPhoto()
-                binding.ivAccPhoto.setImageURI(userPhotoUri)
+                binding.ivAccPhoto.setImageUriGlide(userPhotoUri)
             }
             imgBtnBack.setOnClickListener { goBack() }
         }
-        return binding.root
     }
 
 

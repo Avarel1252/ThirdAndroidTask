@@ -42,9 +42,13 @@ class MyContactsFragment : Fragment() {
     ): View {
         binding = FragmentMyContactsBinding.inflate(inflater, container, false)
 
-        sharedViewModel.userLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-        }
+        initialize()
+
+        return binding.root
+    }
+
+    private fun initialize() {
+        setObserver()
 
         with(binding) {
             rwUsers.adapter = adapter
@@ -52,8 +56,12 @@ class MyContactsFragment : Fragment() {
                 findNavController().navigate(R.id.action_myContactsFragment_to_addContactFragment)
             }
         }
+    }
 
-        return binding.root
+    private fun setObserver() {
+        sharedViewModel.userLiveData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
 }

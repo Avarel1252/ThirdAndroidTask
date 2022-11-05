@@ -3,14 +3,15 @@ package com.application.models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.getHardUsersList
+import androidx.lifecycle.viewModelScope
+import com.application.getHardUsersList
 
 class UserViewModel : ViewModel() {
     private val _userLiveData = MutableLiveData<List<UserModel>>()
     var userLiveData: LiveData<List<UserModel>> = _userLiveData
 
     init {
-        _userLiveData.value = getHardUsersList()
+        _userLiveData.value = getHardUsersList().value
     }
 
     fun deleteUser(user: UserModel) {
@@ -26,7 +27,12 @@ class UserViewModel : ViewModel() {
     }
 
     fun getLastId(): Int {
-        return _userLiveData.value?.last()?.id ?: -1
+        val list = _userLiveData.value ?: listOf()
+        return if (list.isEmpty()) {
+            -1
+        } else {
+            list.last().id
+        }
     }
 
     fun getUser(id: Int): UserModel? {
@@ -38,7 +44,6 @@ class UserViewModel : ViewModel() {
         }
         return null
     }
-
 
 
 }

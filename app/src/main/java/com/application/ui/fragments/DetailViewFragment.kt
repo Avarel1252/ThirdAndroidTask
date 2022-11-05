@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.application.databinding.FragmentDetailViewBinding
 import com.application.models.UserViewModel
 import com.application.utils.Constants
@@ -21,8 +22,18 @@ class DetailViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailViewBinding.inflate(inflater, container, false)
+
+        initialize()
+
+        return binding.root
+    }
+
+    private fun initialize() {
+        binding.imgBtnBack.setOnClickListener { findNavController().popBackStack() }
+
         val targetUser =
             sharedViewModel.getUser(requireArguments().getInt(Constants.TARGET_USER_ID_KEY))
+
         targetUser?.let {
             with(binding) {
                 ivAccPhoto.setImage(it)
@@ -31,6 +42,5 @@ class DetailViewFragment : Fragment() {
                 tvAddress.text = it.homeAddress
             }
         }
-        return binding.root
     }
 }

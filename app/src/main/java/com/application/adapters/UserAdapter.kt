@@ -23,6 +23,7 @@ class UserAdapter(private val listener: Listener) :
     }
 
     override fun onClick(v: View?) {
+
         v?.let {
             when (it.id) {
                 R.id.btn_delete -> {
@@ -45,14 +46,15 @@ class UserAdapter(private val listener: Listener) :
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = getItem(position)
+        val user = currentList[position]
         with(holder.binding) {
-            root.tag = user
-            btnDelete.tag = user
-
             tvUsername.text = user.username
             tvCareer.text = user.career
             ivAccIcon.setImage(user)
+
+            root.tag = user
+            btnDelete.tag = user
+
         }
     }
 
