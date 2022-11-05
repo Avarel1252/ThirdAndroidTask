@@ -10,8 +10,8 @@ import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.application.R
 import com.application.databinding.FragmentAddContactBinding
-import com.application.utils.extensions.setImage
 import com.application.models.UserModel
 import com.application.models.UserViewModel
 import com.application.utils.Constants
@@ -36,11 +36,14 @@ class AddContactFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddContactBinding.inflate(inflater, container, false)
-
-        setOnClickListeners()
-
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setOnClickListeners()
+    }
+
 
     private fun setOnClickListeners() {
         with(binding) {
@@ -52,7 +55,6 @@ class AddContactFragment : Fragment() {
             imgBtnBack.setOnClickListener { goBack() }
         }
     }
-
 
     private fun returnUserInfo() {
         with(binding) {
@@ -71,7 +73,7 @@ class AddContactFragment : Fragment() {
                 )
                 findNavController().popBackStack()
             } else {
-                tInUsername.error = "necessary field"
+                tInUsername.error = getString(R.string.necessary_field)
             }
         }
     }

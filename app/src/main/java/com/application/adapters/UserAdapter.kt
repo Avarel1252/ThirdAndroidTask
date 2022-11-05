@@ -3,27 +3,22 @@ package com.application.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.application.R
 import com.application.databinding.UserItemBinding
-import com.application.utils.extensions.setImage
 import com.application.models.UserModel
+import com.application.utils.IUserAdapterListener
+import com.application.utils.ItemCallbackDiffUtil
+import com.application.utils.extensions.setImage
 
 
-class UserAdapter(private val listener: Listener) :
-    ListAdapter<UserModel, UserAdapter.UserViewHolder>(ItemCallback), View.OnClickListener {
+class UserAdapter(private val listener: IUserAdapterListener) :
+    ListAdapter<UserModel, UserAdapter.UserViewHolder>(ItemCallbackDiffUtil), View.OnClickListener {
 
     class UserViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    interface Listener {
-        fun deleteItem(user: UserModel)
-        fun getSelectItemId(user: UserModel)
-    }
-
     override fun onClick(v: View?) {
-
         v?.let {
             when (it.id) {
                 R.id.btn_delete -> {
@@ -54,18 +49,6 @@ class UserAdapter(private val listener: Listener) :
 
             root.tag = user
             btnDelete.tag = user
-
         }
     }
-
-    object ItemCallback : DiffUtil.ItemCallback<UserModel>() {
-        override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
-            return oldItem == newItem
-        }
-    }
-
 }

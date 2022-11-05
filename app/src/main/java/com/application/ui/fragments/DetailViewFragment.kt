@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.application.databinding.FragmentDetailViewBinding
-import com.application.models.UserViewModel
-import com.application.utils.Constants
+import com.application.models.UserModel
 import com.application.utils.extensions.setImage
 
 class DetailViewFragment : Fragment() {
     private lateinit var binding: FragmentDetailViewBinding
-    private val sharedViewModel: UserViewModel by activityViewModels()
+    private val args by navArgs<DetailViewFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,19 +21,18 @@ class DetailViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailViewBinding.inflate(inflater, container, false)
-
-        initialize()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initialize()
     }
 
     private fun initialize() {
         binding.imgBtnBack.setOnClickListener { findNavController().popBackStack() }
 
-        val targetUser =
-            sharedViewModel.getUser(requireArguments().getInt(Constants.TARGET_USER_ID_KEY))
-
-        targetUser?.let {
+        (args.targetUser as UserModel).let {
             with(binding) {
                 ivAccPhoto.setImage(it)
                 tvUsername.text = it.username

@@ -12,4 +12,5 @@
     <string name="label_profile">Profile</string>
     <string name="username" translatable="false">%s</string>
     <string name="career" translatable="false">%s</string>
+    <string name="necessary_field">necessary field</string>
 </resources>

@@ -14,6 +14,7 @@ import com.application.models.UserModel
 import com.application.models.UserViewModel
 import com.application.utils.Constants
 import com.application.adapters.UserAdapter
+import com.application.utils.IUserAdapterListener
 
 
 class MyContactsFragment : Fragment() {
@@ -21,15 +22,14 @@ class MyContactsFragment : Fragment() {
     private lateinit var binding: FragmentMyContactsBinding
     private val sharedViewModel: UserViewModel by activityViewModels()
     private val adapter by lazy {
-        UserAdapter(object : UserAdapter.Listener {
+        UserAdapter(object : IUserAdapterListener {
             override fun deleteItem(user: UserModel) {
                 sharedViewModel.deleteUser(user)
             }
 
             override fun getSelectItemId(user: UserModel) {
                 findNavController().navigate(
-                    R.id.action_myContactsFragment_to_detailViewFragment,
-                    bundleOf(Constants.TARGET_USER_ID_KEY to user.id)
+                    MyContactsFragmentDirections.actionMyContactsFragmentToDetailViewFragment(user)
                 )
             }
         })
@@ -41,15 +41,16 @@ class MyContactsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMyContactsBinding.inflate(inflater, container, false)
-
-        initialize()
-
         return binding.root
     }
 
-    private fun initialize() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initialize()
         setObserver()
+    }
 
+    private fun initialize() {
         with(binding) {
             rwUsers.adapter = adapter
             tvAddContacts.setOnClickListener {

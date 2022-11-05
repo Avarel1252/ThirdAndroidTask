@@ -1,12 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
 }
 
 android {
     namespace 'com.application'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.application"
         minSdk 21
@@ -30,13 +31,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding{
+    viewBinding {
         enabled true
     }
+
 }
 
 dependencies {
-    implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'

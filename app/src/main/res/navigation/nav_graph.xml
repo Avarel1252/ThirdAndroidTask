@@ -30,5 +30,10 @@
         android:id="@+id/detailViewFragment"
         android:name="com.application.ui.fragments.DetailViewFragment"
         android:label="fragment_detail_view"
-        tools:layout="@layout/fragment_detail_view" />
+        tools:layout="@layout/fragment_detail_view">
+        <argument
+            android:name="targetUser"
+            app:argType="UserModel"
+            />
+    </fragment>
 </navigation>
