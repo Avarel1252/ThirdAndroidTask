@@ -31,7 +31,6 @@ class DetailViewFragment : Fragment() {
 
     private fun initialize() {
         binding.imgBtnBack.setOnClickListener { findNavController().popBackStack() }
-
         (args.targetUser as UserModel).let {
             with(binding) {
                 ivAccPhoto.setImage(it)
