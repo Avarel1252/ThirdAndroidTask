@@ -34,7 +34,6 @@
         <argument
             android:name="targetUser"
             app:argType="UserModel"
-            app:nullable="false"
             />
     </fragment>
 </navigation>
