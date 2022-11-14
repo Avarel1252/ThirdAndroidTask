@@ -17,4 +17,5 @@
     <dimen name="btn_height">55dp</dimen>
     <dimen name="btn_corner_radius">6dp</dimen>
     <dimen name="verticalGap_textFields">16dp</dimen>
+    <dimen name="horizontal_add_photo_margin">60dp</dimen>
 </resources>

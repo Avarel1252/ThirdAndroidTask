@@ -35,4 +35,8 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@color/blue</item>
     </style>
+
+    <style name="MyDialog" parent="Theme.AppCompat.Dialog.MinWidth">
+        <item name="windowMinWidthMajor">80%</item>
+    </style>
 </resources>

@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.application.R
 import com.application.databinding.FragmentAddContactBinding
 import com.application.models.UserModel
@@ -18,7 +17,7 @@ import com.application.utils.Constants
 import com.application.utils.extensions.setImageUriGlide
 
 
-class AddContactFragment : Fragment() {
+class AddContactDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentAddContactBinding
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var userPhotoUri = Uri.parse(Constants.DEFAULT_USER_PHOTO)
@@ -30,12 +29,18 @@ class AddContactFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        this.setStyle(STYLE_NORMAL,R.style.MyDialog)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddContactBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -44,14 +49,10 @@ class AddContactFragment : Fragment() {
         setOnClickListeners()
     }
 
-
     private fun setOnClickListeners() {
         with(binding) {
             btnSave.setOnClickListener { returnUserInfo() }
-            btnAddPhoto.setOnClickListener {
-                addPhoto()
-                binding.ivAccPhoto.setImageUriGlide(userPhotoUri)
-            }
+            btnAddPhoto.setOnClickListener { addPhoto() }
             imgBtnBack.setOnClickListener { goBack() }
         }
     }
@@ -71,7 +72,7 @@ class AddContactFragment : Fragment() {
                         etDateBirth.text.toString()
                     )
                 )
-                findNavController().popBackStack()
+                dismiss()
             } else {
                 tInUsername.error = getString(R.string.necessary_field)
             }
@@ -80,10 +81,10 @@ class AddContactFragment : Fragment() {
 
     private fun addPhoto() {
         pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
+        binding.ivAccPhoto.setImageUriGlide(userPhotoUri)
     }
 
     private fun goBack() {
-        findNavController().popBackStack()
+        dismiss()
     }
-
 }

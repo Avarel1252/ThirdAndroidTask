@@ -5,7 +5,6 @@ import android.widget.ImageView
 import com.application.models.UserModel
 import com.bumptech.glide.Glide
 
-
 fun ImageView.setImage(user: UserModel) {
     Glide.with(this)
         .load(user.photo)

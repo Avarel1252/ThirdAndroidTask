@@ -1,4 +1,4 @@
-package com.application
+package com.application.data
 
 import com.application.models.UserModel
 import kotlinx.coroutines.flow.MutableStateFlow
